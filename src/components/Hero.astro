@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import mapa from '../assets/mapa.png';
+---
+
+<section class="bg-white py-20">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center">
+      <div class="lg:w-1/2 lg:pr-12">
+        <h1 class="text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6">
+          Nos preocupamos por tu salud y bienestar
+        </h1>
+        <p class="text-xl text-gray-700 mb-8">
+          te ayudamos a agendar tu cita teniendo conocimiento de la especialidad que necesitas y la ubicación que te acomode, con un mapa interactivo que muestra los especialistas en tu propia ciudad !!!
+        </p>
+      </div>
+      <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
+        <Image 
+          src={mapa} 
+          alt="Happy family" 
+          class="rounded-lg shadow-xl"
+          width={600}
+          height={400}
+        />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Modal -->
+<div id="videoModal" class="fixed inset-0 bg-black bg-opacity-50 z-50  items-center justify-center hidden">
+  <div class="bg-white rounded-lg p-8 max-w-3xl w-full">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-2xl font-bold">How Your Co. Works</h3>
+      <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="aspect-w-16 aspect-h-9">
+      <iframe 
+        id="youtubeVideo"
+        class="w-full h-full"
+        src="https://www.youtube.com/embed/f4D55v97wLM"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  // components/Hero.astro
+  const playButton = document.getElementById('playButton');
+  const videoModal = document.getElementById('videoModal');
+  const closeModal = document.getElementById('closeModal');
+  const youtubeVideo = document.getElementById('youtubeVideo') as HTMLIFrameElement;
+
+  playButton?.addEventListener('click', () => {
+    videoModal?.classList.remove('hidden');
+  });
+
+  closeModal?.addEventListener('click', () => {
+    videoModal?.classList.add('hidden');
+    youtubeVideo.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  });
+
+  videoModal?.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      videoModal.classList.add('hidden');
+      youtubeVideo.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
+  });
+</script>

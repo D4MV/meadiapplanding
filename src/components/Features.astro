@@ -1,0 +1,33 @@
+---
+import { FaClinicMedical, FaPager, FaCalendarAlt, FaClipboardCheck } from 'react-icons/fa';
+
+const features = [
+  { icon: FaClinicMedical, title: 'Buscar especialistas centrados en tu problema' },
+  { icon: FaPager, title: 'Elegir el especialista que te acomode' },
+  { icon: FaCalendarAlt, title: 'Agendar citas con anticipación' },
+  { icon: FaClipboardCheck, title: 'Saber la ubicación de la atención' },
+];
+
+---
+
+<section class="bg-blue-700 py-20 text-white text-center">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-serif font-bold mb-4">¿Que puedes hacer en la plataforma?</h2>
+    <p class="text-xl mb-12 max-w-2xl mx-auto">
+      Estamos para ayudarte a agendar citas médicas de una manera fácil, rápida y segura.
+    </p>
+
+    <div class="bg-white text-blue-700 rounded-lg shadow-lg p-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        {features.map((feature) => (
+          <div class="flex flex-col items-center">
+            <feature.icon className="w-16 h-16 mb-4" />
+            <p class="text-sm font-semibold">{feature.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+
+  </div>
+</section>

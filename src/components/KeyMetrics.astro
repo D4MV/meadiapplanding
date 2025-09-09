@@ -1,0 +1,23 @@
+---
+const metrics = [
+  { value: '91', label: 'De los usuarios puntuan la aplicación con 5 estrellas', symbol: '%' },
+  { value: '80', label: 'De los pacientes concretan su cita medica', symbol: '%' },
+  { value: '85', label: 'De los profesionales de la salud ofrecen sus servicios en esta app', symbol: '%' },
+];
+---
+
+<section class="bg-gray-100 py-16">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-start space-y-12 md:space-y-0">
+      {metrics.map((metric) => (
+        <div class="text-center md:w-1/3">
+          <div class="flex items-baseline justify-center">
+            <span class="text-7xl font-bold text-green-700">{metric.value}</span>
+            <span class="text-5xl font-bold text-green-700 ml-1">{metric.symbol}</span>
+          </div>
+          <p class="mt-4 text-lg font-semibold text-gray-700 max-w-[200px] mx-auto">{metric.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
